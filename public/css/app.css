@@ -86,6 +86,10 @@ body {
     align-items: center;
     line-height: 0;
 }
+.jaBtn {
+    background-color: #FDD835;
+    text-align: center;
+}
 .boton span {
     font-size: 2.2rem;
     margin-left: 20px;
@@ -243,6 +247,9 @@ body.index {
     max-width: 300px;
     margin: 0 auto 1rem auto;
     text-transform: uppercase;
+    border: 1px solid red;
+    background-color: #cd5d67;
+}
 }
 .error {
     color: red!important;
