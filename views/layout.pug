@@ -1,0 +1,31 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/css/normalixe.css")
+        link(rel="stylesheet", href="/css/app.css")
+        title #{nombrePagina}
+    body
+        header.barra
+            h1 UpStack - Administrador de Proyectos
+            a(href="#") Log out
+
+
+        main.contenedor 
+            aside.contenedor-proyectos
+                .panel.crear-proyecto
+                     a(href="#" class='boton') Nuevo Proyecto
+                        span + 
+                .panel.lista-proyectos 
+                    h2 Proyectos
+                    ul#proyectos.proyectos
+                        li
+                            a(href="#") Diseño de tienda Virtual
+                        li
+                            a(href="#") Diseño de Nuevo Blog
+                        li
+                            a(href="#") Diseño de Logotipo
+
+            block contenido
