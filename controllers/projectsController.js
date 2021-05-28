@@ -1,3 +1,5 @@
+const Proyectos = require('../models/Proyectos');
+
 exports.homeProject = (req, res) => {
     res.render('index', {
         nombrePagina : 'Proyectos'
@@ -11,7 +13,7 @@ exports.formProject = (req, res) => {
 }
 
 
-exports.newProject = (req, res) => {
+exports.newProject = async (req, res) => {
     const { nombre } = req.body;
 
     let errores = [];
@@ -29,5 +31,7 @@ exports.newProject = (req, res) => {
     } else {
         //No errors 
         // Push on DB
+        const proyecto = await Proyectos.create({ nombre });
+        res.redirect('/');
     }
 }
