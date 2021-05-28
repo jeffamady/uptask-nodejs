@@ -3,6 +3,17 @@ const routes = require('./routes');
 const path = require('path');
 const bodyParser = require('body-parser');
 
+
+//Connection with DB
+const db = require('./config/db');
+
+//Importar el modelo
+require('./models/Proyectos');
+
+db.sync()
+    .then(() => console.log('Conectado al Servidor'))
+    .catch(error => console.log(error));
+
 //configuration
 const app = express();
 const port = process.env.PORT?process.env.PORT:3000;
