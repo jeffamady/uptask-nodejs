@@ -13,7 +13,13 @@ module.exports = function () {
 
     router.post('/nuevo-proyecto', 
         body('nombre').not().isEmpty().trim().escape(),
-        projectsController.newProject);
+        projectsController.newProject
+    );
+
+    // List project
+    router.get('/proyectos/:url', projectsController.urlProject);
+
+
 
     return router;
 

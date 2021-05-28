@@ -3,6 +3,9 @@ const routes = require('./routes');
 const path = require('path');
 const bodyParser = require('body-parser');
 
+// helpers
+const helpers = require('./helpers');
+
 
 //Connection with DB
 const db = require('./config/db');
@@ -25,6 +28,14 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, './views'));
 //Static files
 app.use(express.static('public'));
+
+// Use vardump
+app.use((req, res, next) => {
+    const date = new Date();
+    res.locals.year = date.getFullYear();
+    res.locals.vardump = helpers.vardump;
+    next();
+});
 
 //Read the data in the console with bodyParser
 app.use(bodyParser.urlencoded({
