@@ -40,30 +40,78 @@ exports.newProject = async (req, res) => {
     } else {
         //No errors 
         // Push on DB
-        const proyecto = await Proyectos.create({ nombre });
+        await Proyectos.create({ nombre });
         res.redirect('/');
     }
 }
 
 
 exports.urlProject = async (req, res, next) => {
-    const proyectos = await Proyectos.findAll();
-    
-    const project = await Proyectos.findOne({
+    const proyectosPromise = Proyectos.findAll();
+    const projectPromise = Proyectos.findOne({
         where: {
             url: req.params.url
         }
     });
-
+    
+    const [ proyectos, project ] = await Promise.all([proyectosPromise, projectPromise]);
+    
     !project 
-        ? next()  
+    ? next()  
+    
+    : res.render('tareas', {
+        nombrePagina : 'Tareas del Proyecto',
+        project,
+        proyectos
+    });
+    
+    
+}
 
-        : res.render('tareas', {
-            nombrePagina : 'Tareas del Proyecto',
-            project,
+exports.editForm = async (req, res) => {
+    const proyectosPromise = Proyectos.findAll();
+    const projectPromise = Proyectos.findOne({
+        where: {
+            id: req.params.id
+        }
+    });
+    
+    const [ proyectos, project ] = await Promise.all([proyectosPromise, projectPromise]);
+    res.render('nuevoProyecto', {
+        nombrePagina : 'Editar Proyecto',
+        proyectos,
+        project
+    });
+}
+
+
+
+
+exports.updateProject = async (req, res) => {
+    const proyectos = await Proyectos.findAll();
+
+    const { nombre } = req.body;
+
+    let errores = [];
+
+
+    if (!nombre) {
+        errores.push({'texto': 'Agrega un Nombre al Proyecto'});
+    }
+
+    if (errores.length > 0) {
+        res.render('nuevoProyecto', {
+            nombrePagina : 'Nuevo Proyecto',
+            errores,
             proyectos
-        });
-
-
-
+        })
+    } else {
+        //No errors 
+        // Push on DB
+        await Proyectos.update(
+            { nombre: nombre },
+            { where: { id: req.params.id }}
+            );
+        res.redirect('/');
+    }
 }
