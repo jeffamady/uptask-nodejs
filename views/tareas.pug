@@ -5,7 +5,7 @@ block contenido
         h1 #{nombrePagina} - #{project.nombre}
 
 
-        pre= vardump(project)
+        //- pre= vardump(project)
         form.agregar-tarea(action=`/proyectos/${project.url}` method="POST")
             .campo
                 label(for="tarea") Tarea:
@@ -13,10 +13,24 @@ block contenido
             .campo.enviar
                 input.boton.nueva-tarea(type="submit" value="Agregar")
 
-        //TODO: Listado de Pendientes
+        //- pre= vardump(tareas)
+
+        .listado-pendientes
+            ul
+                if tareas.length
+                    each tarea in tareas
+                        li.tarea 
+                            p= tarea.tarea
+                            .acciones
+                                if tarea.estado
+                                    i.far.fa-check-circle.completo
+                                else
+                                    i.far.fa-check-circle
+                                i.fas.fa-trash
+                else 
+                    p No hay tareas en el proyect #{project.nombre}
 
 
-        //- pre= vardump(project)
 
 
         // Acciones que se pueden realizar
