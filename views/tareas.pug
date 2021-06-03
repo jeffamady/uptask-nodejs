@@ -17,4 +17,4 @@ block contenido
         // Acciones que se pueden realizar
         .contenedor-acciones
             a(href=`/proyecto/editar/${project.id}` class="boton") Editar Proyecto
-            button#eliminar-proyecto(type="button" class="boton eliminar") Eliminar Proyecto
+            button#eliminar-proyecto(data-project-url=project.url type="button" class="boton eliminar") Eliminar Proyecto
