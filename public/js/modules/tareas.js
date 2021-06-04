@@ -1,5 +1,7 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import {actualizarAvance} from '../functions/avance';
+
 
 const tareas = document.querySelector('.listado-pendientes');
 
@@ -19,6 +21,9 @@ if (tareas) {
             .then(function(respuesta){
                 if(respuesta.status === 200){
                     icono.classList.toggle('completo');
+
+
+                    actualizarAvance();
                 }
             })
 
@@ -46,21 +51,23 @@ if (tareas) {
 
                     // Axios Delete
                     axios.delete(url, { params: { idTarea }})
-                        .then(function(respuesta){
-                            // Eliminar el nodo
-                            tareaHtml.parentElement.removeChild(tareaHtml);
+                    .then(function(respuesta){
+                        // Eliminar el nodo
+                        tareaHtml.parentElement.removeChild(tareaHtml);
 
-                            // OPtional una alerta
-                            Swal.fire(
-                                'Hecho Tarea Eliminada',
-                                respuesta.data,
-                                'success'
+                        // OPtional una alerta
+                        Swal.fire(
+                            'Hecho Tarea Eliminada',
+                            respuesta.data,
+                            'success'
                             )
+
+                            actualizarAvance();
 
                         })
 
-                }
-            })
+                    }
+                })
 
 
 
