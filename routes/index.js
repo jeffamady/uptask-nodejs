@@ -38,6 +38,9 @@ module.exports = function () {
         body('nombre').not().isEmpty().trim().escape(),
         tareasController.agregarTarea
     );
+
+    // Actualizar tareas
+    router.patch('/tareas/:id', tareasController.cambiarEstadoTarea);
     
     return router;
     
