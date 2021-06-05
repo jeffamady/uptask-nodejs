@@ -70,8 +70,6 @@ body {
 }
 .enviar {
    justify-content: flex-end;
-   align-self: center;
-   margin-top: .5rem;
 }
 .boton {
     background-color: #FDD835;
@@ -80,7 +78,7 @@ body {
     padding: 2rem;
     text-transform: uppercase;
     border: none;
-    font-size-adjust: .5;
+    font-weight: 900;
     width: 250px;
     margin:0  auto;
 
@@ -245,9 +243,6 @@ body.index {
     max-width: 300px;
     margin: 0 auto 1rem auto;
     text-transform: uppercase;
-    border: 1px solid red;
-    background-color: #cd5d67;
-}
 }
 .error {
     color: red!important;
@@ -264,7 +259,7 @@ body.index {
 }
 .correcto p {
     color: green;
-}
+}  
 
 /** Linea de Avance **/
 .barra-avance {
@@ -291,8 +286,6 @@ form.agregar-proyecto {
     padding: 2rem;
     color: white;
     transition: background-color .5s ease-in-out;
-    display: flex;
-    flex-direction: column;
 }
 form.agregar-proyecto label,
 form.agregar-proyecto input {
