@@ -2,7 +2,11 @@ const Proyectos = require('../models/Proyectos');
 const Tareas = require('../models/Tareas');
 
 exports.homeProject = async (req, res) => {
-    const proyectos = await Proyectos.findAll();
+    
+    // console.log(res.locals.usuario);
+
+    const usuarioId = res.locals.usuario.id;
+    const proyectos = await Proyectos.findAll({where: { usuarioId }});
 
     res.render('index', {
         nombrePagina : 'Proyectos ' + res.locals.year,
@@ -11,7 +15,8 @@ exports.homeProject = async (req, res) => {
 }
 
 exports.formProject = async (req, res) => {
-    const proyectos = await Proyectos.findAll();
+    const usuarioId = res.locals.usuario.id;
+    const proyectos = await Proyectos.findAll({where: { usuarioId }});
 
     res.render('nuevoProyecto', {
         nombrePagina : 'Nuevo Proyecto',
@@ -21,7 +26,8 @@ exports.formProject = async (req, res) => {
 
 
 exports.newProject = async (req, res) => {
-    const proyectos = await Proyectos.findAll();
+    const usuarioId = res.locals.usuario.id;
+    const proyectos = await Proyectos.findAll({where: { usuarioId }});
 
     const { nombre } = req.body;
 
@@ -41,17 +47,20 @@ exports.newProject = async (req, res) => {
     } else {
         //No errors 
         // Push on DB
-        await Proyectos.create({ nombre });
+        const usuarioId = res.locals.usuario.id;
+        await Proyectos.create({ nombre, usuarioId });
         res.redirect('/');
     }
 }
 
 
 exports.urlProject = async (req, res, next) => {
-    const proyectosPromise = Proyectos.findAll();
+    const usuarioId = res.locals.usuario.id;
+    const proyectosPromise = Proyectos.findAll({where: { usuarioId }});
     const projectPromise = Proyectos.findOne({
         where: {
-            url: req.params.url
+            url: req.params.url,
+            usuarioId
         }
     });
     
@@ -80,10 +89,12 @@ exports.urlProject = async (req, res, next) => {
 }
 
 exports.editForm = async (req, res) => {
-    const proyectosPromise = Proyectos.findAll();
+    const usuarioId = res.locals.usuario.id;
+    const proyectosPromise = Proyectos.findAll({where: { usuarioId }});
     const projectPromise = Proyectos.findOne({
         where: {
-            id: req.params.id
+            id: req.params.id,
+            usuarioId
         }
     });
     
@@ -99,7 +110,8 @@ exports.editForm = async (req, res) => {
 
 
 exports.updateProject = async (req, res) => {
-    const proyectos = await Proyectos.findAll();
+    const usuarioId = res.locals.usuario.id;
+    const proyectos = await Proyectos.findAll({where: { usuarioId }});
 
     const { nombre } = req.body;
 
