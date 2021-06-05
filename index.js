@@ -1,11 +1,12 @@
 const express = require('express');
 const routes = require('./routes');
 const path = require('path');
-// const expressValidator = require('express-validator');
+const expressValidator = require("express-validator");
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const passport = require('./config/passport');
 
 
 // helpers
@@ -33,7 +34,7 @@ const port = process.env.PORT?process.env.PORT:3000;
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-// app.use(expressValidator());
+app.use(expressValidator());
 //Static files
 app.use(express.static('public'));
 //PUG
@@ -52,6 +53,9 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Use vardump
 app.use((req, res, next) => {

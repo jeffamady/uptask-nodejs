@@ -5,7 +5,7 @@ html(lang="en")
         include partials/header
     body.login
         .contenedor-formulario
-            h1 Crea tu cuenta en Uptask
+            h1 Crea tu cuenta en UpTask
 
             if locals.mensajes
                 .alertas
@@ -25,5 +25,3 @@ html(lang="en")
                     input.boton(type="submit" value="Crear Cuenta")
                 .campo.enviar 
                     a(href="/iniciar-sesion") Volver a Iniciar Sesion
-
-        script(src="/dist/bundle.js") 
