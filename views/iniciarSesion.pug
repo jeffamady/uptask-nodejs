@@ -10,6 +10,13 @@ html(lang="en")
             if error
                 p.alerta.error= error
 
+            if locals.mensajes
+                .alertas
+                    each categoria in Object.keys(locals.mensajes)
+                        each error in mensajes[categoria]
+                            .alerta(class=`${categoria}`)
+                                p= error
+
             form#formulario.caja.caja-login(method='POST' action="/iniciar-sesion")
                 .campo 
                     label(for="email") Email: 
