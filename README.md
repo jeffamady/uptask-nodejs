@@ -1,6 +1,9 @@
 # UpTask Project
 
 ## It is a NodeJS web page
+## Down below I have attached the deployment link:
+    https://uptaskja.herokuapp.com/
+
 
  ## This web page is connected to the API of Spotify you can search **Songs** and add them to your **Playlist**.
 
@@ -21,7 +24,7 @@ To run this project, install it locally using npm:
 ```
 $ cd ../uptask-nodejs 
 $ npm install
-$ npm start
+$ npm run dlp
 ```
 
 ## You can see views of the web page
