@@ -76,7 +76,10 @@ module.exports = function () {
         usuariosController.formCrearCuenta
     );
     router.post('/crear-cuenta',
-        usuariosController.crearCuenta
+    usuariosController.crearCuenta
+    );
+    router.get('/confirmar/:email',
+        usuariosController.confirmarCuenta
     );
 
 
