@@ -2,20 +2,25 @@
 
 ## It is a NodeJS web page
 ## Down below I have attached the deployment link:
-    https://uptaskja.herokuapp.com/
+   <https://uptaskja.herokuapp.com/>
 
 
- ## This web page is connected to the API of Spotify you can search **Songs** and add them to your **Playlist**.
+ ## It is a project where you can register for free. A confirmation email will be sent to your email, to be able to start creating projects and adding tasks to them safely. You will be able to see the progress of each project you have. If you have forgotten your password, it can be easily recovered by sending a message to your email.
 
 ## Technologies
 * bcrypt v5.0.1
 * express v1.17.2
-* express-session
+* express-session v1.17.2
 * pug v5.0.1
 * axios v0.21.1
 * sweetalert2 v5.38.1
 * webpack v4.7.0
 * node v16.0.0
+* juice v8.0.0
+* mysql2 v2.2.5
+* nodemailer v6.6.1
+* sequelize v6.6.2
+* sweetalert2 v11.0.16
 
 
 ## Setup
