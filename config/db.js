@@ -1,9 +1,10 @@
 const { Sequelize } = require('sequelize');
+require('dotenv').config( {path: 'variables.env'});
 
 // Option 2: Passing parameters separately (other dialects)
-const db = new Sequelize('uptasknode', 'root', 'root1234', {
-  host: 'localhost',
-  port: '3306',
+const db = new Sequelize(process.env.BD_NAME, process.env.BD_USER, process.env.DB_PASS, {
+  host: process.env.BD_HOST,
+  port: process.env.BD_PORT,
   dialect:'mysql',
   define: {
     timestamps: false

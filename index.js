@@ -2,11 +2,11 @@ const express = require('express');
 const routes = require('./routes');
 const path = require('path');
 const expressValidator = require("express-validator");
-const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const passport = require('./config/passport');
+require('dotenv').config( {path: 'variables.env'});
 
 
 // helpers
@@ -28,12 +28,12 @@ db.sync()
 //configuration
 const app = express();
 const port = process.env.PORT?process.env.PORT:3000;
+const host = process.env.HOST || '0.0.0.0'
 
 
-//Read the data in the console with bodyParser
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+//Read the data in the console with express.json
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 app.use(expressValidator());
 //Static files
 app.use(express.static('public'));
@@ -73,6 +73,6 @@ app.use((req, res, next) => {
 app.use('/', routes());
 
 
-app.listen(port, ()=>{
+app.listen(port, host, ()=>{
     console.log(`Server on on port: ${port}`);
 });
