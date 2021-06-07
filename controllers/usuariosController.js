@@ -24,6 +24,11 @@ exports.crearCuenta = async (req, res) => {
             email,
             password
         });
+
+        
+
+
+
         res.redirect('/iniciar-sesion');
     } catch (error) {
         req.flash('error', error.errors.map(error => error.message));
